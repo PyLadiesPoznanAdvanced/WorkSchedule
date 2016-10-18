@@ -15,16 +15,6 @@ class PersonTests(unittest.TestCase):
 
         self.assertEqual(self.person.get_working_days_number_person(), 15)
 
-    def test_get_number_of_nights(self):
-        """Test for method get_number_of_nights for Person object."""
-
-        self.assertEqual(self.person.get_number_of_nights(), 6)
-
-    def test_get_number_of_days(self):
-        """Test for method get_number_of_days for Person object."""
-
-        self.assertEqual(self.person.get_number_of_days(), 9)
-
     def test_wheather_day_is_free(self):
         """Test for method wheather_day_is_free for Person object."""
 

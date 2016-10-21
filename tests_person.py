@@ -1,80 +1,77 @@
-
 import unittest
-from person import Person
+import person
 
 
 class PersonTests(unittest.TestCase):
     """
-    Test for methods of Person model.
+    Testy dla metod zawartych w klasie Person z modułu person.
     """
     def setUp(self):
-        self.person = Person(name='name', schedule='...DDD...NNN...DDD...NNN...DDD')
+        self.person = person.Person(name='name', schedule='...DDD...NNN...DDD...NNN...DDD')
 
-    def test_get_working_days_number_person(self):
-        """Test for method get_working_days_number_person for Person object."""
+    def test_is_day_free(self):
+        """Test metody is_day_free."""
 
-        self.assertEqual(self.person.get_working_days_number_person(), 15)
+        self.assertEqual(self.person.is_day_free(2), True)
+        self.assertEqual(self.person.is_day_free(3), False)
 
-    def test_wheather_day_is_free(self):
-        """Test for method wheather_day_is_free for Person object."""
+    def test_take_one_day_work(self):
+        """Test metody take_one_day_work."""
 
-        self.assertEqual(self.person.wheather_day_is_free(2), True)
-        self.assertEqual(self.person.wheather_day_is_free(3), False)
+        a_person = person.Person(name='name', schedule='...DDD...NNN...DDD...NNN...DDD')
+        a_person.take_one_day_work(0, 'N')
+        a_person.take_one_day_work(7, 'D')
+        self.assertEqual(a_person.schedule, 'N..DDD.D.NNN...DDD...NNN...DDD')
 
-    def test_take_work(self):
-        """Test for method take_work for Person object."""
+    def test_get_number_of_working_days(self):
+        """Test metody get_number_of_working_days."""
 
-        person = Person(name='name', schedule='...DDD...NNN...DDD...NNN...DDD')
-        person.take_work(0, 'N')
-        person.take_work(7, 'D')
-        self.assertEqual(person.schedule, 'N..DDD.D.NNN...DDD...NNN...DDD')
+        self.assertEqual(self.person.get_number_of_working_days(), 15)
 
-    def test_filtre_work_days_in_month(self):
-        """Test for method filtre_work_days_in_month for Person object."""
+    def test_month_is_full(self):
+        """Test metody month_is_full."""
 
-        self.assertEqual(self.person.filtre_work_days_in_month(15), True)
-        self.assertEqual(self.person.filtre_work_days_in_month(14), False)
+        self.assertEqual(self.person.month_is_full(15), True)
+        self.assertEqual(self.person.month_is_full(14), False)
 
-    def test_filtre_double_work(self):
-        """Test for method filtre_double_work for Person object."""
+    def test_if_double_work(self):
+        """Test metody if_double_work."""
 
-        person = Person(name='name', schedule='.D............................')
-        self.assertEqual(person.filtre_double_work(0, 'N'), False)
-        self.assertEqual(person.filtre_double_work(0, 'D'), True)
+        a_person = person.Person(name='name', schedule='.D............................')
+        self.assertEqual(a_person.if_double_work(0, 'N'), True)
+        self.assertEqual(a_person.if_double_work(0, 'D'), False)
 
-        person = Person(name='name', schedule='.N............................')
-        self.assertEqual(person.filtre_double_work(0, 'N'), True)
-        self.assertEqual(person.filtre_double_work(0, 'D'), True)
+        a_person = person.Person(name='name', schedule='.N............................')
+        self.assertEqual(a_person.if_double_work(0, 'N'), False)
+        self.assertEqual(a_person.if_double_work(0, 'D'), False)
 
-        person = Person(name='name', schedule='D.............................')
-        self.assertEqual(person.filtre_double_work(1, 'N'), True)
-        self.assertEqual(person.filtre_double_work(1, 'D'), True)
+        a_person = person.Person(name='name', schedule='D.............................')
+        self.assertEqual(a_person.if_double_work(1, 'N'), False)
+        self.assertEqual(a_person.if_double_work(1, 'D'), False)
 
-        person = Person(name='name', schedule='N.............................')
-        self.assertEqual(person.filtre_double_work(1, 'N'), True)
-        self.assertEqual(person.filtre_double_work(1, 'D'), False)
+        a_person = person.Person(name='name', schedule='N.............................')
+        self.assertEqual(a_person.if_double_work(1, 'N'), False)
+        self.assertEqual(a_person.if_double_work(1, 'D'), True)
 
-        person = Person(name='name', schedule='............D.................')
-        self.assertEqual(person.filtre_double_work(11, 'D'), True)
-        self.assertEqual(person.filtre_double_work(11, 'N'), False)
+        a_person = person.Person(name='name', schedule='............D.................')
+        self.assertEqual(a_person.if_double_work(11, 'D'), False)
+        self.assertEqual(a_person.if_double_work(11, 'N'), True)
 
-        person = Person(name='name', schedule='............N.................')
-        self.assertEqual(person.filtre_double_work(13, 'D'), False)
-        self.assertEqual(person.filtre_double_work(13, 'N'), True)
+        a_person = person.Person(name='name', schedule='............N.................')
+        self.assertEqual(a_person.if_double_work(13, 'D'), True)
+        self.assertEqual(a_person.if_double_work(13, 'N'), False)
 
-    def test_filtre_work_days_in_week(self):
-        """Test for method filtre_work_days_in_week for Person object."""
+    def test_if_week_is_full(self):
+        """Test metody if_week_is_full."""
 
-        self.assertEqual(self.person.filtre_work_days_in_week(4, 6), True)
-        self.assertEqual(self.person.filtre_work_days_in_week(4, 9), True)
+        # a_person = person.Person(name='name', schedule='...DDD...NNN...DDD...NNN...DDD')
+        self.assertEqual(self.person.if_week_is_full(6), False)
+        self.assertEqual(self.person.if_week_is_full(9), False)
 
-        person = Person(name='name', schedule='.N.DDD.D.NNN...DDD...NNN...DDD')
-        self.assertEqual(person.filtre_work_days_in_week(4, 8), False)
-        self.assertEqual(person.filtre_work_days_in_week(4, 10), False)
+        a_person = person.Person(name='name', schedule='.N.DDD.D.NNN...DDD...NNN...DDD')
+        self.assertEqual(a_person.if_week_is_full(8), True)
+        self.assertEqual(a_person.if_week_is_full(12), True)
 
 
 if __name__ == '__main__':
     unittest.main()
-
-
-

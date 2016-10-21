@@ -2,7 +2,7 @@
 Witamy ;-)
 
 
-Opis zadania dotyczy zadania zawartego w plikach:
+Opis dotyczy zadania zawartego w plikach:
 person.py          
 fill_schedule.py
 tests_person.py

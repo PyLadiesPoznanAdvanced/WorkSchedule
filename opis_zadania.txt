@@ -2,7 +2,7 @@
 Witamy ;-)
 
 
-Opis zadania dotyczy zadania zawartego w plikach:
+Opis dotyczy zadania zawartego w plikach:
 person.py          
 fill_schedule.py
 tests_person.py
@@ -64,7 +64,9 @@ Wymagania:
 
 #####################
 
-Przykładowy grafik po wypełnieniu automatycznym z takimi wymaganiami:
+
+Przykładowy grafik po wypełnieniu automatycznym:
+
 
 osoba       grafik
 A   D.D...N..NUUUUUUNNN.D..D..D.D.N
@@ -84,3 +86,5 @@ N   D..D..D..D.D.DD..N.N.DD...D..D.
 O   N.D...D..N.D..DNN.D..N.D..D..D.
 
 Powodzenia!
+
+

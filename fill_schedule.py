@@ -36,8 +36,7 @@ number_of_working_days = 13  # liczba dyżurów w ciągu miesiąca
 
 
 def fill_team_schedules(crew, schedules, number_of_working_days, person_per_day, person_per_night):
-    """
-    Funkcja służąca do automatycznego wypełniania grafuku pracy.
+    """Funkcja służąca do automatycznego wypełniania grafuku pracy.
 
     Funkcja wypełnia automatycznie grafiki pracy (schedule) dla poszczególnych osób z załogi (crew)
     Wszystkie osoby (w postaci instancji Person) należy zebrać w listę (team).
@@ -51,7 +50,13 @@ def fill_team_schedules(crew, schedules, number_of_working_days, person_per_day,
     :param person_per_night: - liczba osób pracujących w nocy
     """
 
-    # tworzenie załogi złożonej z instancji Person
+    # tworzenie drużyny złożonej z instancji Person
     team = [person.Person(name, schedule) for name, schedule in zip(crew, schedules)]
 
     # TODO poniżej Twoje rozwiązanie
+
+
+
+
+if __name__ == "__main__":
+    fill_team_schedules(crew, schedules, number_of_working_days, person_per_day, person_per_night)

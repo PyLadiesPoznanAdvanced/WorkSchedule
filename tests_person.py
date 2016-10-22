@@ -4,7 +4,7 @@ import person
 
 class PersonTests(unittest.TestCase):
     """
-    Testy dla metod zawartych w klasie Person z modułu person.
+    Testy metod zawartych w klasie Person z modułu person.
     """
     def setUp(self):
         self.person = person.Person(name='name', schedule='...DDD...NNN...DDD...NNN...DDD')
@@ -32,7 +32,7 @@ class PersonTests(unittest.TestCase):
         """Test metody month_is_full."""
 
         self.assertEqual(self.person.month_is_full(15), True)
-        self.assertEqual(self.person.month_is_full(14), False)
+        self.assertEqual(self.person.month_is_full(16), False)
 
     def test_if_double_work(self):
         """Test metody if_double_work."""
@@ -64,12 +64,11 @@ class PersonTests(unittest.TestCase):
     def test_if_week_is_full(self):
         """Test metody if_week_is_full."""
 
-        # a_person = person.Person(name='name', schedule='...DDD...NNN...DDD...NNN...DDD')
         self.assertEqual(self.person.if_week_is_full(6), False)
-        self.assertEqual(self.person.if_week_is_full(9), False)
+        self.assertEqual(self.person.if_week_is_full(12), False)
 
         a_person = person.Person(name='name', schedule='.N.DDD.D.NNN...DDD...NNN...DDD')
-        self.assertEqual(a_person.if_week_is_full(8), True)
+        self.assertEqual(a_person.if_week_is_full(2), True)
         self.assertEqual(a_person.if_week_is_full(12), True)
 
 
